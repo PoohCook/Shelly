@@ -38,7 +38,7 @@ impl Colors {
 pub fn get_temperature(tint: u8, level: u8) -> u8 {
     let tint = if tint > 6 { 0 } else { tint };
     let level = if level > 15 { 15 } else { level };
-    
+
     (tint & 0x0f) << 4 | (level & 0x0f)
 }
 
@@ -47,11 +47,11 @@ pub fn get_temperature(tint: u8, level: u8) -> u8 {
 pub fn adjust_temperature(temperature: u8, adjust: i8) -> u8 {
     let tint = (temperature & 0xf0) >> 4;
     let level = (temperature & 0x0f) as i8 + adjust;
-    
+
     if level < 1 {
         return 0;
     }
-    
+
     get_temperature(tint, level as u8)
 }
 
@@ -60,7 +60,7 @@ pub fn adjust_temperature(temperature: u8, adjust: i8) -> u8 {
 pub fn get_color_bright(temperature: u8, bright: u8) -> RGB8 {
     let tint = (temperature & 0xf0) >> 4;
     let level = (temperature & 0x0f) as f32 / 15.0;
-    
+
     match tint {
         1 => RGB8::new((bright as f32 * level) as u8, 0, 0),
         2 => RGB8::new(0, (bright as f32 * level) as u8, 0),

@@ -18,7 +18,7 @@ use crate::ws2812::prerendered::Ws2812;
 use smart_leds::{SmartLedsWrite, RGB8};
 // use rtt_target::{rprintln, rtt_init_print};
 
-pub const LED_NUM: usize = 36;
+pub const LED_NUM: usize = 32;
 const BLINK_MSEC: u32 = 200;
 
 pub struct LightPorts<'a> {
